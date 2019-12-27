@@ -8,6 +8,11 @@ import { BoardComponent } from './board/board.component';
 import { BoardsComponent } from './boards/boards.component';
 import { AddBoardComponent } from './add-board/add-board.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from '../environments/environment';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +23,9 @@ import { AddBoardComponent } from './add-board/add-board.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

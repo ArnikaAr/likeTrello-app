@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+
+class Board {
+  constructor() {}
+}
+
+
 
 @Component({
   selector: 'app-boards',
@@ -7,7 +14,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardsComponent implements OnInit {
 
-  constructor() { }
+  public boards: FirebaseListObservable<Board[]>;
+
+  constructor(db: AngularFireDatabase) {
+    this.boards =  db.list('boards');
+    console.log(this.boards.valueChanges());
+  }
 
   ngOnInit() {
   }
