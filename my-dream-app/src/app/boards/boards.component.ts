@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireObject} from 'angularfire2/database';
+import { Observable } from 'rxjs';
 
 class Board {
   constructor() {}
@@ -14,11 +15,14 @@ class Board {
 })
 export class BoardsComponent implements OnInit {
 
-  public boards: FirebaseListObservable<Board[]>;
+  boardRef: AngularFireObject<any>;
+   boards: Observable<any>;
 
   constructor(db: AngularFireDatabase) {
-    this.boards =  db.list('boards');
-    console.log(this.boards.valueChanges());
+    this.boardRef = db.object('boards');
+    this.boards =  this.boardRef.valueChanges();
+
+    console.log(this.boards);
   }
 
   ngOnInit() {

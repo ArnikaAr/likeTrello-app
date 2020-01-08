@@ -1,1 +1,6 @@
 <p>boards works!</p>
+<ul>
+  <li class="text" *ngFor="let board of boards | async">
+    {{board.name}}
+  </li>
+</ul>
